@@ -2,7 +2,7 @@ function Myrcia() {
     var self = this,
 
     // the canvas element
-    _canvas = null, 
+    _canvas = null,
 
     /** @const */
     CANVAS_WIDTH,
@@ -234,19 +234,29 @@ function Myrcia() {
      **/
     function setDirection(direc) {
         if (direc != _direction || !_movePic) {
-            switch (direc) {
-                case 'left' :
+            try {
+                switch (direc) {
+                    case 'left' :
+                        _direction = direc;
                     _movePic = function() { ++_point.x; };
-                break;
-                case 'right' :
+                    break;
+                    case 'right' :
+                        _direction = direc;
                     _movePic = function() { --_point.x; };
-                break;
-                case 'up' :
+                    break;
+                    case 'up' :
+                        _direction = direc;
                     _movePic =  function() { ++_point.y; };
-                break;
-                case 'down' :
+                    break;
+                    case 'down' :
+                        _direction = direc;
                     _movePic = function() { --_point.y; };
-                break;
+                    break;
+                    default:
+                        throw direc
+                }
+            } catch(e) {
+                console.log('Wrong direction: ' + direc);
             }
         }
     }
@@ -310,3 +320,4 @@ Myrcia.each = function(obj, fn) {
         }
     }
 };
+

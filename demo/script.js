@@ -18,6 +18,7 @@
                 bg: {
                     img: bg
                 },
+                direction: 'left',
                 samples : [{
                     class: House,
                     rate: .3
@@ -26,6 +27,12 @@
         })();
 
         mc.init(config);
+        var times = 0;
+        var direc = ['left', 'right', 'up', 'down'];
+        setInterval(function() {
+            mc.setDirection(direc[times]);
+            times = (times + 1) % 4
+        }, 1000);
     }
 })();
 
@@ -116,3 +123,4 @@ function House() {
         };
     };
 };
+
